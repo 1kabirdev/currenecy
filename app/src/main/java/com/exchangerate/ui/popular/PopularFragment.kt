@@ -35,7 +35,7 @@ class PopularFragment : Fragment(), AdapterPopular.OnClickListener,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        mainViewModel.getLoadRateList(Constants.APIKEY)
         lifecycleScope.launchWhenStarted {
             mainViewModel.popularStateFlow.collect { it ->
                 when (it) {
