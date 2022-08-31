@@ -1,4 +1,4 @@
-# currenecy
+# Сurrenecy
 Стек
 Kotlin, MVVM, StateFlow, Coroutines, Room, Hilt
 1) Отображение списка валют
