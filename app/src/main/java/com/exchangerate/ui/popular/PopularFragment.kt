@@ -1,30 +1,29 @@
 package com.exchangerate.ui.popular
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.exchangerate.databinding.FragmentPopularBinding
 import com.exchangerate.model.WishlistDao
-import com.exchangerate.room.AppDao
+import com.exchangerate.ui.dialog.DialogFiltersFragment
 import com.exchangerate.utils.AddWishlistPopularState
-import com.exchangerate.utils.PopularState
 import com.exchangerate.utils.Constants
+import com.exchangerate.utils.PopularState
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.withContext
-import javax.inject.Inject
 
 @AndroidEntryPoint
-class PopularFragment : Fragment(), AdapterPopular.OnClickListener {
+class PopularFragment : Fragment(), AdapterPopular.OnClickListener,
+    DialogFiltersFragment.OnClickListernner {
 
     private val mainViewModel: PopularViewModel by viewModels()
     private lateinit var binding: FragmentPopularBinding
+    private lateinit var adapterPopular: AdapterPopular
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +35,7 @@ class PopularFragment : Fragment(), AdapterPopular.OnClickListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainViewModel.getLoadRateList(Constants.APIKEY)
+
         lifecycleScope.launchWhenStarted {
             mainViewModel.popularStateFlow.collect { it ->
                 when (it) {
@@ -61,14 +60,22 @@ class PopularFragment : Fragment(), AdapterPopular.OnClickListener {
             }
         }
 
+        adapterPopular = AdapterPopular(this)
+        binding.recyclerView.adapter = adapterPopular
+
         binding.btnClickReply.setOnClickListener {
             mainViewModel.getLoadRateList(Constants.APIKEY)
+        }
+
+        binding.filters.setOnClickListener {
+            val fm: FragmentManager = requireActivity().supportFragmentManager
+            val filtrsFragment = DialogFiltersFragment(this)
+            filtrsFragment.show(fm, "fragment_filtrs")
         }
     }
 
     private fun initAdapter(rates: ArrayList<Pair<String, String>>) {
-        val adapterMain = AdapterPopular(rates, this)
-        binding.recyclerView.adapter = adapterMain
+        adapterPopular.addItem(rates)
     }
 
     override fun addWishlist(name: String, currency: String) {
@@ -91,5 +98,13 @@ class PopularFragment : Fragment(), AdapterPopular.OnClickListener {
                 }
             }
         }
+    }
+
+    override fun onClickAscending() {
+        adapterPopular.sortListPriceAscending()
+    }
+
+    override fun onClickDescending() {
+        adapterPopular.sortListPriceDescending()
     }
 }

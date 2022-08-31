@@ -1,15 +1,40 @@
 package com.exchangerate.ui.popular
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.exchangerate.databinding.ItemListBinding
 
 class AdapterPopular(
-    private var rates: ArrayList<Pair<String, String>>,
     private var listenner: OnClickListener
 ) :
     RecyclerView.Adapter<AdapterPopular.ViewHolder>() {
+
+    private var rates: ArrayList<Pair<String, String>> = arrayListOf()
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun addItem(ratesList: ArrayList<Pair<String, String>>) {
+        rates.clear()
+        rates.addAll(ratesList)
+        notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun sortListPriceAscending() {
+        val sortedPrice = rates.sortedWith(compareBy { it.first.toDouble() })
+        rates.clear()
+        rates.addAll(sortedPrice)
+        notifyDataSetChanged()
+    }
+
+    @SuppressLint("NotifyDataSetChanged")
+    fun sortListPriceDescending() {
+        val sortedPrice = rates.sortedByDescending { it.first.toDouble() }
+        rates.clear()
+        rates.addAll(sortedPrice)
+        notifyDataSetChanged()
+    }
 
     inner class ViewHolder(private val binding: ItemListBinding) :
         RecyclerView.ViewHolder(binding.root) {
