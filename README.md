@@ -7,6 +7,6 @@ Kotlin, MVVM, StateFlow, Coroutines, Room, Hilt
 4) Убрать валюту из избранного
 5) Сортировка по значению: по возростанию и по убыванию
 
-![image_popular](https://user-images.githubusercontent.com/103750625/187575324-2ad06474-044b-4fc2-9b53-fcd7cdf2b771.jpg)
-![image_saved](https://user-images.githubusercontent.com/103750625/187575356-f1140d40-a249-4279-bbc9-3422170362e2.jpg)
-![image_sorts](https://user-images.githubusercontent.com/103750625/187575372-f7f38b3e-5ce7-4918-beaf-b843da75e5cd.jpg)
+![image_popular](https://user-images.githubusercontent.com/103750625/187575324-2ad06474-044b-4fc2-9b53-fcd7cdf2b771.jpg)</br>
+![image_saved](https://user-images.githubusercontent.com/103750625/187575356-f1140d40-a249-4279-bbc9-3422170362e2.jpg)</br>
+![image_sorts](https://user-images.githubusercontent.com/103750625/187575372-f7f38b3e-5ce7-4918-beaf-b843da75e5cd.jpg)</br>
