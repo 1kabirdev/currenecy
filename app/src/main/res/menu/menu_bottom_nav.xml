@@ -3,10 +3,10 @@
     <item
         android:id="@+id/homeFragment"
         android:icon="@drawable/ic_outline_home"
-        android:title="Главная" />
+        android:title="@string/text_popular" />
 
     <item
         android:id="@+id/exploreFragment"
         android:icon="@drawable/ic_baseline_star"
-        android:title="Избранное" />
+        android:title="@string/text_saved" />
 </menu>
