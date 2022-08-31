@@ -56,7 +56,34 @@ data class Rates(
     val ERN: Double,
     val ETB: Double,
     val EUR: Double,
-    val FJD: Double
+    val FJD: Double,
+    val FKP: Double,
+    val GBP: Double,
+    val GEL: Double,
+    val GGP: Double,
+    val GHS: Double,
+    val GIP: Double,
+    val GMD: Double,
+    val GNF: Double,
+    val GTQ: Double,
+    val GYD: Double,
+    val HKD: Double,
+    val HNL: Double,
+    val HRK: Double,
+    val HTG: Double,
+    val HUF: Double,
+    val IDR: Double,
+    val ILS: Double,
+    val IMP: Double,
+    val INR: Double,
+    val IQD: Double,
+    val IRR: Double,
+    val ISK: Double,
+    val JEP: Double,
+    val JMD: Double,
+    val JOD: Double,
+    val JPY: Double,
+    val KES: Double
 ) {
 
     fun getMapRates(): ArrayList<Pair<String, String>> {
@@ -109,6 +136,33 @@ data class Rates(
         map["ETB"] = ETB
         map["EUR"] = EUR
         map["FJD"] = FJD
+        map["FKP"] = FKP
+        map["GBP"] = GBP
+        map["GEL"] = GEL
+        map["GGP"] = GGP
+        map["GHS"] = GHS
+        map["GIP"] = GIP
+        map["GMD"] = GMD
+        map["GNF"] = GNF
+        map["GTQ"] = GTQ
+        map["GYD"] = GYD
+        map["HKD"] = HKD
+        map["HNL"] = HNL
+        map["HRK"] = HRK
+        map["HTG"] = HTG
+        map["HUF"] = HUF
+        map["IDR"] = IDR
+        map["ILS"] = ILS
+        map["IMP"] = IMP
+        map["INR"] = INR
+        map["IQD"] = IQD
+        map["IRR"] = IRR
+        map["ISK"] = ISK
+        map["JEP"] = JEP
+        map["JMD"] = JMD
+        map["JOD"] = JOD
+        map["JPY"] = JPY
+        map["KES"] = KES
         val valuesList: List<String> = map.values.map { (it.toString()) } as ArrayList<String>
         val keysList: List<String> = map.keys.map { (it) } as ArrayList<String>
         return valuesList.zip(keysList) as ArrayList<Pair<String, String>>
