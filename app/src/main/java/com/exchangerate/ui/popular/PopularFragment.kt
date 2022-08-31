@@ -35,7 +35,7 @@ class PopularFragment : Fragment(), AdapterPopular.OnClickListener,
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        mainViewModel.getLoadRateList(Constants.APIKEY)
+        mainViewModel.getLoadRateList(Constants.APIKEY, "USD")
         lifecycleScope.launchWhenStarted {
             mainViewModel.popularStateFlow.collect { it ->
                 when (it) {
@@ -64,7 +64,7 @@ class PopularFragment : Fragment(), AdapterPopular.OnClickListener,
         binding.recyclerView.adapter = adapterPopular
 
         binding.btnClickReply.setOnClickListener {
-            mainViewModel.getLoadRateList(Constants.APIKEY)
+            mainViewModel.getLoadRateList(Constants.APIKEY, "USD")
         }
 
         binding.filters.setOnClickListener {

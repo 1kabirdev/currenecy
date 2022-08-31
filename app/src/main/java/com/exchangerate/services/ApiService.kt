@@ -10,5 +10,6 @@ interface ApiService {
     @GET("latest")
     suspend fun loadRates(
         @Query("apikey") apikey: String,
+        @Query("base") base: String,
     ): Response<ResponseRate>
 }

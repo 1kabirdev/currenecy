@@ -30,9 +30,9 @@ constructor(
     val popularAddWishlistStateFlow: StateFlow<AddWishlistPopularState> =
         _popularAddWishlistStateFlow
 
-    fun getLoadRateList(apiKey: String) = viewModelScope.launch {
+    fun getLoadRateList(apiKey: String, base: String) = viewModelScope.launch {
         _popularStateFlow.value = PopularState.Loading
-        mainRepository.getLoadRatesList(apiKey)
+        mainRepository.getLoadRatesList(apiKey, base)
             .catch { e ->
                 _popularStateFlow.value = PopularState.Failure(e)
             }.collect { data ->

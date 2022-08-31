@@ -18,8 +18,8 @@ constructor(
     private var appDao: AppDao
 ) {
 
-    fun getLoadRatesList(apiKey: String): Flow<Response<ResponseRate>> = flow {
-        emit(apiServiceImpl.getLoadRates(apiKey))
+    fun getLoadRatesList(apiKey: String, base: String): Flow<Response<ResponseRate>> = flow {
+        emit(apiServiceImpl.getLoadRates(apiKey, base))
     }.flowOn(Dispatchers.IO)
 
     fun addWishlistCurrency(wishlistDao: WishlistDao) = flow {
